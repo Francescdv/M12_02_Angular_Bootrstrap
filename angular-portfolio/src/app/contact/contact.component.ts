@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
+import { MustMatch } from '../contact/_helpers/must-match.validator';
 
 @Component({
   selector: 'app-contact',
@@ -10,35 +10,44 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ContactComponent implements OnInit {
 
+  registerForm!: FormGroup;
+  submitted = false;
 
-  contactMe = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    })
+  constructor(private formBuilder: FormBuilder) { }
 
-  });
+  ngOnInit() {
+      this.registerForm = this.formBuilder.group({
+          title: ['', Validators.required],
+          firstName: ['', Validators.required],
+          lastName: ['', Validators.required],
+          // validates date format yyyy-mm-dd
+          dob: ['', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
+          email: ['', [Validators.required, Validators.email]],
+          telf: ['', [Validators.required]],
+          message: ['', [Validators.required, Validators.minLength(50)]],
+          acceptTerms: [false, Validators.requiredTrue]
+      }, {
 
-
-
-
-
-  onSubmit(){
-    // TODO: Use EventEmitter with form value
-    console.warn(this.contactMe.value);
+      });
   }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
 
-  constructor(private fb: FormBuilder) { }
+  onSubmit() {
+      this.submitted = true;
 
-  ngOnInit(): void {
+      // stop here if form is invalid
+      if (this.registerForm.invalid) {
+          return;
+      }
 
-
-
+      // display form values on success
+      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
   }
 
+  onReset() {
+      this.submitted = false;
+      this.registerForm.reset();
+  }
 }
