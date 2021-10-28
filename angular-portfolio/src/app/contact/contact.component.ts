@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Meta, MetaDefinition } from '@angular/platform-browser';
-import { MustMatch } from '../contact/_helpers/must-match.validator';
+
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  template: `<h1>Contact Component</h1>`,
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {

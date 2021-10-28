@@ -18,11 +18,11 @@
 <div class="card m-3">
   <h5 class="card-header card text-white bg-primary mb-3">Formulario de contacto</h5>
   <div class="card-body">
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="registerForm" action="email.php" method="post" (ngSubmit)="onSubmit()">
           <div class="form-row">
               <div class="form-group col">
                   <label>Título</label>
-                  <select formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                  <select formControlName="title" name="titulo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
                       <option value=""></option>
                       <option value="Mr">Sr</option>
                       <option value="Mrs">Srt</option>
@@ -35,14 +35,14 @@
               </div>
               <div class="form-group col">
                   <label>Nombre</label>
-                  <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                  <input type="text" formControlName="firstName" name="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                   <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                       <div *ngIf="f.firstName.errors.required">El nombre es obligatorio</div>
                   </div>
               </div>
               <div class="form-group col">
                   <label>Apellidos</label>
-                  <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                  <input type="text" formControlName="lastName" name="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                   <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                       <div *ngIf="f.lastName.errors.required">El apellido es obligatorio</div>
                   </div>
@@ -51,7 +51,7 @@
           <div class="form-row">
               <div class="form-group col">
                   <label>Fecha de nacimiento</label>
-                  <input type="date" formControlName="dob" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                  <input type="date" formControlName="dob" class="form-control" name="date" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
                   <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
                       <div *ngIf="f.dob.errors.required">La fecha de nacimiento es obligatoria</div>
                       <div *ngIf="f.dob.errors.pattern">Debe seguir el formato DD-MM-AAAA</div>
@@ -59,20 +59,20 @@
               </div>
               <div class="form-group col">
                   <label>Email</label>
-                  <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                  <input type="text" formControlName="email" class="form-control" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                       <div *ngIf="f.email.errors.required">El Email es obligatorio</div>
                       <div *ngIf="f.email.errors.email">Debes introducir una dirección válida de Email</div>
                   </div>
                   <div class="form-group col">
                     <label>Teléfono</label>
-                    <input type="number" formControlName="telf" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telf.errors }" />
+                    <input type="number" formControlName="telf" class="form-control" name="telf" [ngClass]="{ 'is-invalid': submitted && f.telf.errors }" />
                     <div *ngIf="submitted && f.telf.errors" class="invalid-feedback">
                         <div *ngIf="f.telf.errors.required">El teléfono es obligatorio</div>
                     </div>
                     <div class="form-group col">
                       <label>Mensaje</label>
-                      <textarea type="text" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                      <textarea type="text" formControlName="message" class="form-control" name="message" [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
                       <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
                           <div *ngIf="f.message.errors.required">Debes dejar un mensaje con el motivo de tu contacto con un mínimo de 50 carácteres.</div>
                       </div>

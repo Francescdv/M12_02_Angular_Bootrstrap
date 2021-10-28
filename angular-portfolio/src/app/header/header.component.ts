@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, MetaDefinition } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  template: `<h1>Header Component</h1>`,
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
