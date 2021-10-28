@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ContactComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private http:HttpClient) { }
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
@@ -33,7 +34,7 @@ export class ContactComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
-  onSubmit() {
+  onSubmit(data:any) {
       this.submitted = true;
 
       // stop here if form is invalid
@@ -41,8 +42,14 @@ export class ContactComponent implements OnInit {
           return;
       }
 
+     this.http.post('http://localhost/email.php', (data))
+     .subscribe((result)=>{
+       console.warn("result",result)
+
+     })
+
       // display form values on success
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+       alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
   }
 
   onReset() {

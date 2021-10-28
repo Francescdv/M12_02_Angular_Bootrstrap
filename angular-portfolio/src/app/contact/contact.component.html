@@ -18,7 +18,7 @@
 <div class="card m-3">
   <h5 class="card-header card text-white bg-primary mb-3">Formulario de contacto</h5>
   <div class="card-body">
-      <form [formGroup]="registerForm" action="email.php" method="post" (ngSubmit)="onSubmit()">
+      <form [formGroup]="registerForm" #userPost="ngForm"  method="post" (ngSubmit)="onSubmit(userPost.value)">
           <div class="form-row">
               <div class="form-group col">
                   <label>Título</label>
