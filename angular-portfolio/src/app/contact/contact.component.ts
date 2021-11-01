@@ -44,7 +44,7 @@ export class ContactComponent implements OnInit {
 
      this.http.post('http://localhost/email.php', (data))
      .subscribe((result)=>{
-       console.warn("result",result)
+       console.warn("result",result )
 
      })
 
